@@ -11,8 +11,8 @@ int main(int argc, char*argv[]){
         return 0;}
 
         FILE *file1, *file2;
-	uint8_t file1num[5] ={};
-        uint8_t file2num[5] ={};
+	uint8_t file1num[5];
+        uint8_t file2num[5];
        	uint32_t sum;
 
         file1 = fopen(argv[1], "rb");
