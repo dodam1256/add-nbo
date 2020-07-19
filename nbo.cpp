@@ -1,11 +1,8 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <netinet/in.h>
+# include <stddef.h>
 
-uint32_t my_ntohs2(uint32_t n){
-	return (n&0xff000000) >> 24 | (n&0x00ff0000) >> 8
-		| (n&0x0000ff00) << 8 | (n&0x000000ff) << 24;}
-     
 
 int main(int argc, char*argv[]){
 
@@ -14,20 +11,25 @@ int main(int argc, char*argv[]){
         return 0;}
 
         FILE *file1, *file2;
-	uint32_t file1num , file2num , sum;
+	uint8_t file1num[5] ={};
+        uint8_t file2num[5] ={};
+       	uint32_t sum;
 
-        file1 = fopen(argv[1], "r");
-        file2 = fopen(argv[2], "r");
+        file1 = fopen(argv[1], "rb");
+        file2 = fopen(argv[2], "rb");
 
-        fread(&file1num, 1 , 5  , file1);
-        fread(&file2num, 1 , 5  , file2);
+        fread(&file1num, 1 , 8  , file1);
+        fread(&file2num, 1 , 8  , file2);
 
-	file1num = my_ntohs2(file1num);
-        file2num = my_ntohs2(file2num);
+	uint32_t *a1 = reinterpret_cast < uint32_t *> (file1num);
+        uint32_t *a2 = reinterpret_cast < uint32_t *> (file2num);
 
-        sum = file1num + file2num ;
+        uint32_t b1 = ntohl(*a1);
+	uint32_t b2 = ntohl(*a2);
 
-        printf("%d(0x%x) + %d(0x%x) = %d(0x%x)", file1num , file1num , file2num , file2num , sum , sum);
+        sum = b1 + b2 ;
+
+        printf("%d(0x%x) + %d(0x%x) = %d(0x%x)", b1 , b1 , b2 , b2 , sum , sum);
 
         fclose(file1);
         fclose(file2);
