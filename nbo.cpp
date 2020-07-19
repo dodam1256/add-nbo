@@ -19,8 +19,8 @@ int main(int argc, char*argv[]){
         file1 = fopen(argv[1], "r");
         file2 = fopen(argv[2], "r");
 
-        fread(&file1num, 1 , 8  , file1);
-        fread(&file2num, 1 , 8  , file2);
+        fread(&file1num, 8 , 1  , file1);
+        fread(&file2num, 8 , 1  , file2);
 
 	uint32_t *a1 = reinterpret_cast < uint32_t *> (file1num);
         uint32_t *a2 = reinterpret_cast < uint32_t *> (file2num);
