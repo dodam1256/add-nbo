@@ -11,12 +11,12 @@ int main(int argc, char*argv[]){
         return 0;}
 
         FILE *file1, *file2;
-	uint8_t file1num[5];
-        uint8_t file2num[5];
+	uint8_t file1num[4];
+        uint8_t file2num[4];
        	uint32_t sum;
 
-        file1 = fopen(argv[1], "rb");
-        file2 = fopen(argv[2], "rb");
+        file1 = fopen(argv[1], "r");
+        file2 = fopen(argv[2], "r");
 
         fread(&file1num, 1 , 8  , file1);
         fread(&file2num, 1 , 8  , file2);
