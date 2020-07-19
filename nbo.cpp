@@ -18,8 +18,8 @@ int main(int argc, char*argv[]){
         fread(&file1num, 1 , 5 , file1);
         fread(&file2num, 1 , 5 , file2);
 
-        file1num = ntohs(file1num);
-        file2num = ntohs(file2num);
+        file1num = ntoh1(file1num);
+        file2num = ntoh1(file2num);
 
         sum = file1num + file2num ;
 
