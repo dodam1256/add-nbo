@@ -22,15 +22,15 @@ int main(int argc, char*argv[]){
         fread(&file1num, 8 , 1  , file1);
         fread(&file2num, 8 , 1  , file2);
 
-	uint32_t *a1 = reinterpret_cast < uint32_t *> (file1num);
-        uint32_t *a2 = reinterpret_cast < uint32_t *> (file2num);
+	uint32_t *num1 = reinterpret_cast < uint32_t *> (file1num);
+        uint32_t *num2 = reinterpret_cast < uint32_t *> (file2num);
 
-        uint32_t b1 = ntohl(*a1);
-	uint32_t b2 = ntohl(*a2);
+        uint32_t nbo1 = ntohl(*num1);
+	uint32_t nbo2 = ntohl(*num2);
 
-        sum = b1 + b2 ;
+        sum = nbo1 + nbo2 ;
 
-        printf("%d(0x%x) + %d(0x%x) = %d(0x%x)", b1 , b1 , b2 , b2 , sum , sum);
+        printf("%d(0x%x) + %d(0x%x) = %d(0x%x)", nbo1 , nbo1 , nbo2 , nbo2 , sum , sum);
 
         fclose(file1);
         fclose(file2);
